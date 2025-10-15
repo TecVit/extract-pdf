@@ -8,14 +8,12 @@ import requests
 
 app = FastAPI(title="PDF IA API")
 
-# ======== MODELOS DE DADOS ======== #
 class PDFBase64(BaseModel):
     file_base64: str
 
 class TextInput(BaseModel):
     texto: str
 
-# ======== ROTA 1: EXTRAÇÃO DO PDF ======== #
 @app.post("/extract")
 def extract_pdf(data: PDFBase64):
     try:
@@ -80,7 +78,6 @@ def generate_answers(data: TextInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao gerar respostas: {e}")
     
-# ======== ROTA DE TESTE ======== #
 @app.get("/")
 def home():
     return {"status": "online", "msg": "API de leitura e resposta de PDF com IA"}
