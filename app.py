@@ -36,7 +36,7 @@ def extract_pdf(data: PDFBase64):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Erro ao processar PDF: {e}")
     
-    
+
 @app.post("/answer")
 def generate_answers(data: TextInput):
     try:
