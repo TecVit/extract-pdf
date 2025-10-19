@@ -14,10 +14,10 @@ class PDFBase64(BaseModel):
 class TextInput(BaseModel):
     texto: str
 
-@app.post("/extract")
+@app.post("/pdf")
 def extract_pdf(data: PDFBase64):
     try:
-        pdf_bytes = base64.b64decode(data.file_base64)
+        pdf_bytes = base64.b64decode(data.base64)
         with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
             tmp_file.write(pdf_bytes)
             tmp_path = tmp_file.name
